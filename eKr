@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+TMP=/tmp/${USER}-screencast.pid
+DISTRO=$(awk '{printf $1}' /etc/issue)
+SIZE=$(xdpyinfo  | grep dimensions | awk '{print $2}')
+VIDEO="screencast-$(date +%s).mp4"
+
+if [[ -f ${TMP} ]]; then
+    kill $(cat ${TMP})
+    rm -f ${TMP}
+else
+
+case "$DISTRO" in 
+    Debian )
+        ffmpeg -f x11grab -s 1366x768 -r 60 -i :0.0 -f alsa -ac 2 -i pulse  -vcodec h264 -acodec libmp3lame -ab 128k -ar 44100 -threads 0 ${VIDEO} & echo $! > ${TMP}
+	;;
+
+    Ubuntu )
+	avconv -f x11grab -s $SIZE -r 60 -i :0.0 -vcodec libx264 -qp 0 -preset ultrafast -threads 2 -an $VIDEO
+        ;;
+    *)
+	echo "$DISTRO not found";;
+esac
+fi
+
