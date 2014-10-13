@@ -3,12 +3,7 @@
 TMP=/tmp/${USER}-screencast.pid
 DISTRO=$(awk '{printf $1}' /etc/issue)
 SIZE=$(xdpyinfo  | grep dimensions | awk '{print $2}')
-VIDEO="screencast-$(date +%s).mp4"
-
-if [[ -f ${TMP} ]]; then
-    kill $(cat ${TMP})
-    rm -f ${TMP}
-else
+VIDEO="eKr-$(date +%s).mp4"
 
 case "$DISTRO" in 
     Debian )
@@ -21,5 +16,3 @@ case "$DISTRO" in
     *)
 	echo "$DISTRO not found";;
 esac
-fi
-
