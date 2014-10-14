@@ -4,6 +4,10 @@ TMP=/tmp/${USER}-screencast.pid
 DISTRO=$(awk '{printf $1}' /etc/issue)
 SIZE=$(xdpyinfo  | grep dimensions | awk '{print $2}')
 VIDEO="eKr-$(date +%s).mp4"
+DELAY=10
+
+echo "screencast recording in $DELAY seconds ..."
+delay $DELAY
 
 case "$DISTRO" in 
     Debian )
