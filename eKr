@@ -7,7 +7,7 @@ VIDEO="eKr-$(date +%s).mp4"
 DELAY=10
 
 echo "screencast recording in $DELAY seconds ..."
-delay $DELAY
+sleep "${DELAY}s"
 
 case "$DISTRO" in 
     Debian )
