@@ -11,7 +11,7 @@ sleep "${DELAY}s"
 
 case "$DISTRO" in 
     Debian )
-        ffmpeg -f x11grab -s 1366x768 -r 60 -i :0.0 -f alsa -ac 2 -i pulse  -vcodec h264 -acodec libmp3lame -ab 128k -ar 44100 -threads 0 ${VIDEO} & echo $! > ${TMP}
+        ffmpeg -f x11grab -s $SIZE -r 60 -i :0.0 -f alsa -ac 2 -i pulse  -vcodec h264 -acodec libmp3lame -ab 128k -ar 44100 -threads 0 ${VIDEO} & echo $! > ${TMP}
 	;;
 
     Ubuntu )
